@@ -1,6 +1,6 @@
 ---
 title: "HW 01 - Airbnb listings in Edinburgh"
-Author: "Adam J Sullivan"
+Author: "Jude Groff"
 output: 
   tufte::tufte_html:
     css: ../hw.css
@@ -11,7 +11,7 @@ link-citations: true
 
 ```{r include = FALSE}
 knitr::opts_chunk$set(
-  eval = FALSE,
+  eval = TRUE,
   out.width = "80%",
   fig.asp = 0.618,
   fig.width = 6
@@ -61,6 +61,7 @@ You can load them by running the following in your Console:
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(dsbox)
+
 ```
 
 ## Data
@@ -72,7 +73,8 @@ You can view the dataset as a spreadsheet using the `View()` function.
 Note that you should not put this function in your R Markdown document, but instead type it directly in the Console, as it pops open a new window (and the concept of popping open a window in a static document doesn't really make sense...).
 When you run this in the console, you'll see the following **data viewer** window pop up.
 
-```{r view-data}
+```{r view-dat ,eval=FALSE}
+data("edibnb")
 View(edibnb)
 ```
 
@@ -86,7 +88,12 @@ You can also find this information [here](https://rstudio-education.github.io/ds
 ```
 
 1.  How many observations (rows) does the dataset have? Instead of hard coding the number in your answer, use inline code.
+
+The dataset "edibnb" has `r nrow(edibnb)` rows.
+
 2.  Run `View(edibnb)` in your Console to view the data in the data viewer. What does each row in the dataset represent?
+
+Each row represents an Airbnb house shown by a number.
 
 🧶 ✅ ⬆️ *Knit,* *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
