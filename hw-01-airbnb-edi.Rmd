@@ -132,7 +132,21 @@ ggplot(edibnb, aes(x = price)) + geom_histogram(binwidth = 50) + facet_wrap(~ ne
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
 4.  Use a single pipeline to identity the neighbourhoods with the top five median listing prices. Then, in another pipeline filter the data for these five neighbourhoods and make ridge plots of the distributions of listing prices in these five neighbourhoods. In a third pipeline calculate the minimum, mean, median, standard deviation, IQR, and maximum listing price in each of these neighbourhoods. Use the visualisation and the summary statistics to describe the distribution of listing prices in the neighbourhoods. (Your answer will include three pipelines, one of which ends in a visualisation, and a narrative.)
+
+
+
 5.  Create a visualization that will help you compare the distribution of review scores (`review_scores_rating`) across neighbourhoods. You get to decide what type of visualisation to create and there is more than one correct answer! In your answer, include a brief interpretation of how Airbnb guests rate properties in general and how the neighbourhoods compare to each other in terms of their ratings.
+
+```{r}
+ggplot(edibnb, aes(x = review_scores_rating)) +
+  geom_histogram(binwidth = 0.1) +
+  facet_wrap(~ neighbourhood) +
+  labs(title = "What neighbourhoods get the highest ratings?",
+       x = "Review rating score",
+       y = "Amount of reviews")
+
+```
+This scatter plot shows what scores each neigbourhood gets, and how many reviews leave this score.
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
 
