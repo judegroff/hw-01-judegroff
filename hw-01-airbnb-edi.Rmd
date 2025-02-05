@@ -133,8 +133,45 @@ ggplot(edibnb, aes(x = price)) + geom_histogram(binwidth = 50) + facet_wrap(~ ne
 
 4.  Use a single pipeline to identity the neighbourhoods with the top five median listing prices. Then, in another pipeline filter the data for these five neighbourhoods and make ridge plots of the distributions of listing prices in these five neighbourhoods. In a third pipeline calculate the minimum, mean, median, standard deviation, IQR, and maximum listing price in each of these neighbourhoods. Use the visualisation and the summary statistics to describe the distribution of listing prices in the neighbourhoods. (Your answer will include three pipelines, one of which ends in a visualisation, and a narrative.)
 
+```{r}
+#| label: 1st-pipe
 
+edibnb %>%
+  count(neighbourhood, price) %>%
+  slice(1:5)
+```
 
+```{r}
+#| label: 2nd-pipe
+
+ Top5_neighbourhood <- edibnb %>%
+             select(neighbourhood, price) %>%
+  slice(1:5)
+```
+
+```{r}
+#| label: 2nd-pipe-plot
+library(ggridges)
+
+ggplot(data = Top5_neighbourhood, 
+       mapping = aes(x = neighbourhood, fill = price, color = price)) +
+  geom_density(alpha = 0.7)
+```
+
+```{r}
+#| label: 3rd-pipe
+
+Top5_neighbourhood %>%
+  group_by(neighbourhood) %>%
+  summarize(
+    min_price = min(price),
+    mean_price = mean(price),
+    median_price = median(price),
+    sd_price = sd(price),
+    iqr_price = IQR(price),
+    max_price = max(price)
+  )
+```
 5.  Create a visualization that will help you compare the distribution of review scores (`review_scores_rating`) across neighbourhoods. You get to decide what type of visualisation to create and there is more than one correct answer! In your answer, include a brief interpretation of how Airbnb guests rate properties in general and how the neighbourhoods compare to each other in terms of their ratings.
 
 ```{r}
